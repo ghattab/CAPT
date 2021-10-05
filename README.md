@@ -41,8 +41,8 @@ The integrated libraries:
 |phylotree.js|n.a|
 |underscore.js|1.8.3|
 
-The creation of phylogenetic tree view is accomplished with the phylotree.js. In the following related paper is given:
-** Shank, Stephen D., Steven Weaver, and Sergei L. Kosakovsky Pond. "phylotree. js-a JavaScript library for application development and interactive data visualization in phylogenetics." BMC bioinformatics 19.1 (2018): 1-5, https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2283-2
+The creation of phylogenetic tree view is accomplished with the phylotree.js.
+> Shank, Stephen D., Steven Weaver, and Sergei L. Kosakovsky Pond. "phylotree. js-a JavaScript library for application development and interactive data visualization in phylogenetics." BMC bioinformatics 19.1 (2018): 1-5, https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2283-2
 
 
 ## Data
