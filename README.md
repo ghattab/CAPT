@@ -1,5 +1,10 @@
 # Context Aware Phylogenetic Trees
 An interactive web tool for providing taxonomic context to a given phylogenetic tree.
+
+
+![](/feature.png)
+
+
 ## Features
 * upload a tree data for the pyhlogenetic tree visualization.
 * selection of a tree from the integrated samples.
