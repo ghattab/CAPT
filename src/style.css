@@ -1,0 +1,215 @@
+body{
+    margin:0;
+    width: 100vw;
+    height:100vh;
+    overflow-x: hidden;
+}
+
+.buttonsLeft{
+    background-color: #eff3ff;
+    border-radius: 8px;
+    border: 2px solid black;
+    padding: 4px 8px;
+    color: black;
+    width: 35%;
+    height:100%;
+    text-align: left;
+}
+
+.buttonsRight{
+    background-color: #eff3ff;
+    border-radius: 8px;
+    border: 2px solid black;
+    padding: 4px 8px;
+    color: black;
+    width: 20%;
+    height:100%;
+    text-align: left;
+}
+.selectionLeft{
+    background-color: #eff3ff;
+    border-radius: 8px;
+    border: 2px solid black;
+    color: black;
+    padding: 4px 8px;
+    width: 35%;
+    height:100%;
+}
+.selectionRight{
+    background-color: #eff3ff;
+    border-radius: 8px;
+    border: 2px solid black;
+    color: black;
+    padding: 4px 8px;
+    width: 20%;
+    height:100%;
+}
+
+.rectangles{
+    padding: 20px;
+    stroke-width: 2px;
+    stroke: #4a4545;
+
+}
+.tooltip{
+    position: absolute;
+    text-align: left;
+    width: 200px;
+    height: 100px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: #ffffff;
+    border: 2px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+
+.containerViews{
+    display:flex;
+    margin:0;
+    width: 100vw;
+}
+
+.container{
+    margin-top :10px;
+    position:relative;
+    width:30%;
+    height:1000px;
+    overflow-x:scroll;
+    scroll-snap-align: start;
+
+}
+.containerIcicle {
+    margin-top :10px;
+    position:relative;
+    width: 70%;
+    left:10px;
+    height:1000px;
+    overflow-x:scroll;
+    scroll-snap-align: start;
+    margin-bottom:0;
+}
+.buttonsAll{
+    display:flex;
+}
+.buttonsLeftDiv{
+    flex-grow: 1;
+    margin-top :5px;
+    position:relative;
+    display:flex;
+    gap :3px;
+    display: flex;
+    font-size: 0.75vw;
+    height:30px;
+    width: 30%;
+
+}
+.buttonsRightDiv{
+    flex-grow: 1;
+    margin-top :5px;
+    margin-left: 80px;
+    position:static;
+    left : -280px;
+    display: flex;
+    font-size: 0.75vw;
+    gap :3px;
+    height:30px;
+    width: 70%;
+}
+
+.tree-selection-brush .extent {
+    position:relative;
+    fill : #a6cee3;
+    stroke: #000000;
+    shape-rendering: crispEdges;
+
+}
+.tree-scale-bar text {
+    font-family: sans-serif;
+}
+
+.tree-scale-bar line,
+.tree-scale-bar path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.node circle, .node ellipse, .node rect {
+    fill: #4682b4;
+    stroke: black;
+    stroke-width: 0.5px;
+}
+
+.internal-node circle, .internal-node ellipse, .internal-node rect{
+    fill: #CCC;
+    stroke: black;
+    stroke-width: 0.5px;
+}
+
+.node {
+    font: 10px sans-serif;
+}
+
+.node-selected {
+    fill: #f00 !important;
+}
+
+.node-collapsed circle, .node-collapsed ellipse, .node-collapsed rect{
+    fill: black !important;
+}
+
+.node-tagged {
+    /*fill: #1f78b4;*/
+    /*fill: #2587ba;*/
+    fill:#2171b5;
+}
+
+.branch {
+    fill: none;
+    stroke: #999999;
+    stroke-width: 2px;
+}
+
+.clade {
+    fill: #1f77b4;
+    stroke: #444;
+    stroke-width: 2px;
+    opacity: 0.5;
+}
+
+.branch-selected {
+    stroke: #f00 !important;
+    stroke-width: 3px;
+}
+
+.branch-tagged {
+    /*stroke: #005eff;*/
+    stroke: #2171b5;
+    stroke-dasharray: 10,5;
+    stroke-width: 2px;
+}
+
+.branch-tracer {
+    stroke: #bbb;
+    stroke-dasharray: 3,4;
+    stroke-width: 1px;
+}
+
+
+.branch-multiple {
+    stroke-dasharray: 5, 5, 1, 5;
+    stroke-width: 3px;
+}
+
+.branch:hover {
+
+    stroke-width: 10px;
+}
+
+.internal-node circle:hover, .internal-node ellipse:hover, .internal-node rect:hover {
+    fill: black;
+    stroke: #CCC;
+}
+
