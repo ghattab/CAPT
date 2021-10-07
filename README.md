@@ -28,7 +28,7 @@ An interactive web tool to provide taxonomic context for a given phylogenetic tr
 
 ## Dependancy
 This is a web based software. It is implemented with using the following languages:
-HTML, JavaScript and Css. 
+HTML, JavaScript and CSS. 
 
 The integrated libraries:
 
@@ -47,7 +47,7 @@ The creation of phylogenetic tree view is accomplished with the phylotree.js.
 
 ## Data
 The taxonomy data integrated into the tool includes the complete taxonomy for bacteria and archaea.
-It is retrieved from the Genome Taxonomy Database(GTDB). 
+It is retrieved from the Genome Taxonomy Database (GTDB). 
 
 The integrated phylogenetic tree data are also retrieved from GTDB.
 From the provided reference phylogenetic tree data of GTDB two small samples are extracted for each domain.
