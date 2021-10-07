@@ -1,4 +1,4 @@
-# Context Aware Phylogenetic Trees
+# Context Aware Phylogenetic Trees (CAPT)
 An interactive web tool to provide taxonomic context for a given phylogenetic tree.
 
 
