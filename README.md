@@ -1,30 +1,30 @@
 # Context Aware Phylogenetic Trees
-An interactive web tool for providing taxonomic context to a given phylogenetic tree.
+An interactive web tool to provide taxonomic context for a given phylogenetic tree.
 
 
 ![](/feature.png)
 
 
 ## Features
-* upload a tree data for the pyhlogenetic tree visualization.
-* selection of a tree from the integrated samples.
-* selection of a region of interest over the phylogenetic tree (inhereted from the phylotree.js project).
-* selection of a domain for the taxonomy view.
-* visualization of the taxonomic context with an icicle view for the selected area on the phylogenetic tree view.
+* upload tree data to the pyhlogenetic tree visualization
+* select a tree from the integrated samples
+* select a region of interest (ROI) over the phylogenetic tree
+* select a domain for the taxonomy view
+* visualize the taxonomic context of the ROI with an icicle
 * tooltip over the icicle view.
-* download the created icicle view as a .svg file.
+* download resulting icicle as .svg file.
 
 
 ## Code
 |Script|Description|
 |---|---|
-|[src/](./src)|composed of all the code scripts and the data required to deploy the web tool.
-|[src/data](src/data)|includes the taxonomy database and the data for sample trees integrated in the tool.
-|[src/d3-body.js](src/d3-body.js)|includes the code script that reads the integrated and uploaded data.
-|[src/index.html](src/index.html)|includes the source libraries and the code script that formats the structure of the page.
-|[src/main.js](./src/main.js)|includes the major code part for the icicle creation and all of the interactions.
-|[src/phylotree.js](./src/phylotree.js)|includes the code from the phylotree.js library that creates the phylogenetic tree view.
-|[src/style.css](./src/style.css)|includes the code for styling and the phylotree.css from the phylotree.js project.
+|[src/](./src)| the source code and the data required to deploy the web tool
+|[src/data](src/data)| the taxonomy database and the data used for the integrated sample data
+|[src/d3-body.js](src/d3-body.js)| the javascript code that reads the integrated and uploaded data
+|[src/index.html](src/index.html)| the source libraries and the code script that handle format and structure of the web tool
+|[src/main.js](./src/main.js)| the javascript core for the icicle creation and all interactive functionalities
+|[src/phylotree.js](./src/phylotree.js)| the phylotree.js library that creates the phylogenetic tree view
+|[src/style.css](./src/style.css)| CSS sheets to style and format phyolgeny and icicle
 
 ## Dependancy
 This is a web based software. It is implemented with using the following languages:
