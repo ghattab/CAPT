@@ -27,8 +27,7 @@ An interactive web tool to provide taxonomic context for a given phylogenetic tr
 |[src/style.css](./src/style.css)| CSS sheets to style and format phyolgeny and icicle
 
 ## Dependancy
-This is a web based software. It is implemented with using the following languages:
-HTML, JavaScript and CSS. 
+This is a web based software. It is implemented using HTML, JavaScript, and CSS. 
 
 The integrated libraries:
 
