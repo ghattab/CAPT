@@ -102,7 +102,7 @@ body{
     display: flex;
     font-size: 0.75vw;
     height:30px;
-    width: 30%;
+    width: 35%;
 
 }
 .buttonsRightDiv{
@@ -116,6 +116,24 @@ body{
     gap :3px;
     height:30px;
     width: 70%;
+}
+
+.row{
+    flex-grow: 1;
+    margin-top :5px;
+    position:static;
+    display: none;
+}
+
+.btn-group{
+    background-color: #eff3ff;
+    position:static;
+    display: flex;
+}
+
+.btn-group-radio{
+    background-color: #eff3ff;
+    font-size: 0.75vw;
 }
 
 .tree-selection-brush .extent {
