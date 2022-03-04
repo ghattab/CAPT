@@ -16,15 +16,15 @@ An interactive web tool to provide taxonomic context for a given phylogenetic tr
 
 
 ## Code
-|Script|Description|
+|Script|Description| 
 |---|---|
-|[src/](./src)| the source code and the data required to deploy the web tool
-|[src/data](src/data)| the taxonomy database and the data used for the integrated sample data
-|[src/d3-body.js](src/d3-body.js)| the javascript code that reads the integrated and uploaded data
-|[src/index.html](src/index.html)| the source libraries and the code script that handle format and structure of the web tool
-|[src/main.js](./src/main.js)| the javascript core for the icicle creation and all interactive functionalities
-|[src/phylotree.js](./src/phylotree.js)| the phylotree.js library that creates the phylogenetic tree view
-|[src/style.css](./src/style.css)| CSS sheets to style and format phyolgeny and icicle
+|[scripts/](scripts)| the javascript codes required to deploy the web tool
+|[data/](data)| the taxonomy database and the data used for the integrated sample data
+|[scripts/d3-body.js](scripts/d3-body.js)| the javascript code that reads the integrated and uploaded data
+|[index.html](index.html)| the source libraries and the code script that handle format and structure of the web tool
+|[scripts/main.js](scripts/main.js)| the javascript core for the icicle creation and all interactive functionalities
+|[scripts/phylotree.js](./scripts/phylotree.js)| the phylotree.js library that creates the phylogenetic tree view 
+|[styles/style.css](./styles/style.css)| CSS sheets to style and format phyolgeny and icicle
 
 ## Dependancy
 This is a web based software. It is implemented using HTML, JavaScript, and CSS. 
