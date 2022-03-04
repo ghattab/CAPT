@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <title>context-aware-phylogenetic-trees</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'> 
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <!-- <script src="scripts/main.js" ></script> -->
+        <script src="scripts/phylotree.js"></script>       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    </head>
+    <body>
+        <div id="buttonsContainer" class="buttonsAll">
+            <div class="buttonsLeftDiv">
+                <button name="fileInput" id="fileInput2" class="buttonsLeft" onclick="document.getElementById('fileInput').click()">Upload Tree</button>
+                <input type="file" id="fileInput" accept="text/plain"  multiple="multiple" style="display:none"/>
+                <select id="treeSelection" class="selectionLeft">
+                    <option value="None">Select Tree</option>
+                    <option value="c_Methanomicrobia">(Archaea) Class Methanomicrobia</option>
+                    <option value="p_Hadarchaeota">(Archaea) Phylum Hadarchaeota</option>
+                    <option value="f__Actinomycetaceae">(Bacteria) Family Actinomycetaceae</option>
+                    <option value="f__Shewanellaceae">(Bacteria) Family Shewanellaceae</option>
+                </select>
+                <button id="createTree" class="buttonsLeft">Create Tree View</button>
+                <!-- <button id="toggleBTN" onclick='toggleBtn()' class="buttonsLeft">Show Toolbar</button> -->
+                <button id="select_all" class="buttonsLeft">Select All</button>
+
+
+            </div>
+            <div id=buttonsIcicle class="buttonsRightDiv">
+                <select id="domainSelection" class="selectionRight">
+                    <option value="None" selected>Select Domain</option>
+                    <option value="archaea">Archaea</option>
+                    <option value="bacteria">Bacteria</option>
+                </select>
+                <button id="createTaxonomy" class="buttonsRight">Create Taxonomy View</button>
+            </div>  
+        </div>
+        
+
+        <div id="svgContainer" class="containerViews">
+            <div id="treeContainer" class="container">
+                <div id = 'toolBar'class = 'row'>
+                    <div class = 'col-md-12'>
+                        <div class="btn-toolbar" role="toolbar">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm" data-direction = 'vertical' data-amount = '1' title = "Expand vertical spacing">
+                                <i class="fa fa-arrows-v" ></i>
+                            </button>
+                             <button type="button" class="btn btn-default btn-sm" data-direction = 'vertical' data-amount = '-1' title = "Compress vertical spacing">
+                                <i class="fa  fa-compress fa-rotate-135" ></i>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm" data-direction = 'horizontal' data-amount = '1' title = "Expand horizonal spacing">
+                                <i class="fa fa-arrows-h" ></i>
+                            </button>
+                             <button type="button" class="btn btn-default btn-sm" data-direction = 'horizontal' data-amount = '-1' title = "Compress horizonal spacing">
+                                <i class="fa  fa-compress fa-rotate-45" ></i>
+                            </button>
+                             <button type="button" class="btn btn-default btn-sm" id = "sort_ascending" title = "Sort deepest clades to the bototm">
+                                <i class="fa fa-sort-amount-asc" ></i>
+                            </button>
+                             <button type="button" class="btn btn-default btn-sm" id = "sort_descending" title = "Sort deepsest clades to the top">
+                                <i class="fa fa-sort-amount-desc" ></i>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm" id = "sort_original" title = "Restore original order">
+                                <i class="fa fa-sort" ></i>
+                            </button>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default active btn-sm">
+                                    <input type="radio" class = "phylotree-align-toggler" data-align = "left" name="options-align" autocomplete="off" title = "Align tips labels to branches"> 
+                                        <i class="fa fa-align-left" ></i>
+                                    </input>  
+                                </label>
+                                <label class="btn btn-default btn-sm">
+                                <input type="radio" class = "phylotree-align-toggler" data-align = "right" name="options-align" autocomplete="off" title = "Align tips labels to the edge of the plot"> 
+                                        <i class="fa fa-align-right" ></i>
+                                    </input>
+                                </label>
+                            </div>
+                          </div>
+                        
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm" id = "select_all" title = "Restore original order">
+                                Select All
+                            </button>
+
+                           <!--  <button type="button" class="btn-group-radio" id = "select_all" onclick = 'selectAllBtn()' title = "Select all">
+                                Select All
+                            </button>
+                             <button type="button" class="btn-group-radio" id = "unselect_all" title = "Unselect All">
+                                Unselect All
+                            </button>  --> 
+                            <!-- <label class="btn btn-default active btn-sm">
+                              <input type="" name="options" id = "select_all" data-mode = "select" autocomplete="off" title = "Select all" onclick="selectAllElements()"> Select All
+                            </label> -->
+                           <!--  <label class="btn btn-default  btn-sm">
+                              <input type="radio" name="options" class = "select-unselect-mode" data-mode = "unselect" autocomplete="off" title = "Unselect all"> Unselect All
+                            </label> -->
+                          </div>             
+                       </div>
+                    </div>
+                </div>
+                
+                <svg id="tree_display"></svg>
+            </div>
+            <div id="containerIcicle" class="containerIcicle">
+            </div>
+        </div>
+        <script src="scripts/main.js" ></script>
+        <script type="text/javascript" src="scripts/d3-body.js"></script>
+    </body>
+</html>
