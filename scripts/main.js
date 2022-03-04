@@ -1,10 +1,12 @@
 
     var taxonomyDataArchaea;
     var taxonomyDataBacteria;
+    var selectedElements = [];
+
     //set color for icicle view
     const colorForIcicles= d3.scale.linear()
         .domain([0,1,2,3,4,5,6])
-        .range([ "#2171b5", "#4292c6","#6baed6", "#9ecae1", "#c6dbef","#eff3ff","#ffffff"]);
+        .range([ "#2171b5", "#4292c6","#6baed6", "#9ecae1", "#c6dbef","#eff3ff","#ffffff"]); 
 
     /*
     sorts given data based on its taxon category
@@ -152,8 +154,8 @@
             "domain");
 
         return passLowerRankAsChildren(domainTaxon,phylumTaxon);
-    }
-
+    }   
+   
     /*
     creates array from selected elements of the tree view
     and looks for these elements in the taxonomy data.
@@ -161,6 +163,7 @@
     function getSelectedDomainAndItem() {
         taxonomyArray=[];
         selectedDomainArray=[];
+        var selectedElements = [];
         var listElements = document.getElementById("domainSelection");
         var selectedElement = listElements.options[listElements.selectedIndex].text;
         if (selectedElement === "Select Domain") {
@@ -174,13 +177,26 @@
                 selectedDomainArray=taxonomyDataArchaea;
             }
 
-            //for selected branches process match with the csv data based on identification number of species
-            let selectedElements = d3.select("#tree_display").selectAll('g.node.node-tagged');
-            for (var i = 0; i < selectedElements[0].length; i++) {
-                let element = selectedElements[0][i].textContent;
-                for (var j = 0; j < selectedDomainArray.length; j++) {
-                    if ((selectedDomainArray[j].id).indexOf(element) !== -1 && element.length>=4) {
-                        taxonomyArray.push(selectedDomainArray[j]);
+            if (selectedElements.length !== 0) {
+                for (var i = 0; i < selectedElements[0].length; i++) {
+                    let element = selectedElements[0][i].textContent;
+                    for (var j = 0; j < selectedDomainArray.length; j++) {
+                        if ((selectedDomainArray[j].id).indexOf(element) !== -1 && element.length>=4) {
+                            taxonomyArray.push(selectedDomainArray[j]);
+                        }
+                    }
+                }
+            }
+            else {
+                //for selected branches process match with the csv data based on identification number of species
+                var selectedElements = d3.select("#tree_display").selectAll('g.node.node-tagged');
+                for (var i = 0; i < selectedElements[0].length; i++) {
+                    let element = selectedElements[0][i].textContent;
+                    for (var j = 0; j < selectedDomainArray.length; j++) {
+                        if ((selectedDomainArray[j].id).indexOf(element) !== -1 && element.length>=4) {
+                            //console.log(selectedDomainArray[j])
+                            taxonomyArray.push(selectedDomainArray[j]);
+                        }
                     }
                 }
             }
@@ -189,6 +205,7 @@
                 alert("Selected Domain could not matched with the tree!" + "\nPlease check your domain or tree selection");
                 return;
             }
+            //console.log(taxonomyArray)
             return taxonomyArray;
         }
     }
@@ -425,7 +442,7 @@
             return domainChildren;
         }
 
-    }
+    } 
     function genusClick(genusName) {
         if (genusName.indexOf("g__") !== -1) {
             let genusArray = [];
@@ -473,7 +490,7 @@
             return domainChildren;
 
         }
-    }
+    } 
     function familyClick(familyName) {
         if (familyName.indexOf("f__") !== -1) {
             let familyArray = [];
@@ -515,8 +532,7 @@
             return domainChildren;
 
         }
-    }
-
+    } 
     function orderClick(orderName) {
         if (orderName.indexOf("o__")!==-1) {
             let orderArray=[];
@@ -554,7 +570,6 @@
         }
 
     }
-
     function classClick(className) {
         if (className.indexOf("c__")!==-1) {
             let classArray=[];
@@ -585,8 +600,7 @@
 
         }
 
-    }
-
+    } 
     function phylumClick(phylumName) {
         // you click on domain, the text includes prefix d__
         if (phylumName.indexOf("p__")!==-1) {
@@ -612,7 +626,6 @@
 
         }
     }
-
     function domainClick(domainName) {
         if (domainName.indexOf("d__")!==-1 || domainName.indexOf("d_")!==-1  ) {
             let domainElements=[];
@@ -659,7 +672,8 @@
                 return colorForIcicles(d.depth);
             })
             .style("stroke", "#4a4545");
-    }
+    } 
+    
     /*
     creates text label for the rectangular areas
      */
@@ -676,7 +690,7 @@
             .text(function (d) {
                 return d.name;
             });
-    }
+    } 
 
     /*
     creates subIcicle view
@@ -745,14 +759,101 @@
 
 
     }
-
+ 
+    
     /*
     creates icicle if subIcicle is clicked
      */
     function subIcicleClick(){
         createIcicle();
-    }
+    } 
 
+
+
+
+    var tree = d3.layout.phylotree()
+
+
+    /* creates Default Tree */
+    function getDefaultTreeCallback(){
+        var defaultTree;
+        d3.text("data/p__Hadarchaeota.nwk", function (error, data){
+            if (error) throw error;
+            defaultTree=data;
+            return createTreeView(defaultTree);
+        });
+    }
+    getDefaultTreeCallback()
+
+
+    var checkGet 
+
+    $(window).on('load', function() {
+
+        //console.log('Everything loaded')
+        function defaultIcicle(){
+            var pathDefault = d3.select("#tree_display").selectAll('path.branch')
+            pathDefault.each(function(d, i){
+                if (i <= 17){
+                    d3.select(this)
+                    .attr("class", "branch branch-tagged")
+                }    
+                })
+            pathDefault.each(function(d, i){
+                if(i <= 7){
+                    d3.select(this)
+                    .classed("branch-tagged", false)
+                }
+            })
+
+            var defaultElements = d3.select("#tree_display").selectAll('g.node')
+
+            var elements = defaultElements.each(function(d, i){
+                if (i <= 5){
+                    d3.select(this)
+                        .attr('class', 'node node-tagged')                       
+                }
+            })
+
+            var elementsOnpageload
+            elementsOnpageload = elements[0].splice(0,6)
+            //console.log(elementsOnpageload)
+            return elementsOnpageload
+
+        }
+
+        checkGet = defaultIcicle()
+        //console.log(checkGet)
+        function getDefaultIcicle(){
+            defaultTaxaArray = [];
+            defaultDomainArray = [];
+
+            defaultDomainArray=taxonomyDataArchaea;
+
+            for (var i = 0; i < checkGet.length; i++) {
+                let element = checkGet[i].textContent;
+                for (var j = 0; j < defaultDomainArray.length; j++) {
+                    if ((defaultDomainArray[j].id).indexOf(element) !== -1 && element.length>=4) {
+                        //console.log(selectedDomainArray[j])
+                        defaultTaxaArray.push(defaultDomainArray[j]);
+                    }
+                }
+            }
+            //console.log(defaultTaxaArray)
+            return defaultTaxaArray
+
+        }
+        getDefaultIcicle()
+
+        createIcicle(getDefaultIcicle())
+
+    })
+    
+
+    
+
+     
+    
     /*
     creates Tree from an uploaded file.
      */
@@ -767,19 +868,23 @@
         }
         else
         {
-            var tree = d3.layout.phylotree()
-                .svg(d3.select("#tree_display"))
+            tree.svg(d3.select("#tree_display"))
                 .radial(false);
+
+                //toolBar()
+            
 
             tree((treeString))
                 .layout();
             d3.select("#icicle").remove();
         }
         $('#treeSelection').val('None');
+        
 
         d3.select("#createTaxonomy").on("click", createIcicle);
 
     }
+
 
     /*
     creates tree from selected tree element in the database or from an uploaded tree data.
@@ -814,6 +919,7 @@
             return createTreeFromUploadedData();
         }
     }
+
     /*
     removes the elements that are not relevant for the selected view.
      */
@@ -824,22 +930,81 @@
         d3.select("#download2").remove();
     }
 
-    /*
-    creates phylogenetic tree view
-     */
+
+    /* function sort_nodes (asc) {
+        tree.traverse_and_compute (function (n) {
+                var d = 1;
+                if (n.children && n.children.length) {
+                    d += d3.max (n.children, function (d) { return d["count_depth"];});
+                }
+                n["count_depth"] = d;
+            }); 
+            tree.resort_children (function (a,b) {
+                return (a["count_depth"] - b["count_depth"]) * (asc ? 1 : -1);
+            });
+    } */
+      
+
     function createTreeView(name) {
         removeElements();
-        var tree = d3.layout.phylotree()
-            .svg(d3.select("#tree_display"))
-            .radial(false);
+        tree.svg(d3.select("#tree_display"))
+        .radial(false);
+
+        //toolBar()
 
         tree((name))
             .layout();
 
+
         d3.select("#createTaxonomy").on("click", createIcicle);
         selectedTreeName="";
+    } 
 
-    }
+   
+    /* function toolBar(){
+        $(".phylotree-align-toggler").on ("change", function (e) {
+            if ($(this).is(':checked')) {
+                if (tree.align_tips ($(this).data ("align") == "right")) {
+                    tree.placenodes().update ();
+                }
+            }
+        });
+
+        $ ("[data-direction]").on ("click", function (e) {
+            var which_function = $(this).data ("direction") == 'vertical' ? tree.spacing_x : tree.spacing_y;
+            which_function (which_function () + (+ $(this).data ("amount"))).update();
+        }); 
+
+       $("#sort_original").on ("click", function (e) {
+            tree.resort_children (function (a,b) {
+                return a["original_child_order"] - b["original_child_order"];
+            });
+        });
+
+        $("#sort_ascending").on ("click", function (e) {
+            sort_nodes (true);
+        });
+        
+        $("#sort_descending").on ("click", function (e) {
+            sort_nodes (false);
+        });
+
+    } */
+    /*Toggle toolbar */
+    /* function toggleBtn() {
+        var toggleButton = document.getElementById('toggleBTN');
+        var x = document.getElementById("toolBar");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+          toggleButton.innerHTML = 'Show Toolbar';
+        } else {
+          x.style.display = "block";
+          toggleButton.innerHTML = 'Hide Toolbar';
+        }
+    }  */
+
+
+
 
     /*
     downloads svg
@@ -863,7 +1028,7 @@
     function downloadIcicle() {
         let svgToExport = document.getElementById("icicle");
         downloadSvg(svgToExport);
-    }
+    } 
     /*
     downloads the SubIcicle View
      */
@@ -871,3 +1036,5 @@
         let svgToExport = document.getElementById("subIcicle");
         downloadSvg(svgToExport);
     }
+
+    
