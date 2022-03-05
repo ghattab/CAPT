@@ -2,7 +2,7 @@
 An interactive web tool to provide taxonomic context for a given phylogenetic tree.
 
 
-![](/feature.png)
+![](/img/feature.png)
 
 
 ## Features
