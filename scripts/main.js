@@ -775,7 +775,7 @@
 
 
     /* creates Default Tree */
-    function getDefaultTreeCallback(){
+   /*  function getDefaultTreeCallback(){
         var defaultTree;
         d3.text("data/p__Hadarchaeota.nwk", function (error, data){
             if (error) throw error;
@@ -783,77 +783,93 @@
             return createTreeView(defaultTree);
         });
     }
-    getDefaultTreeCallback()
+    getDefaultTreeCallback() */
 
+
+   
+
+    document.addEventListener('readystatechange', event => {
+        // When window loaded ( external resources are loaded too- `css`,`src`, etc...) 
+        if (event.target.readyState === "complete") {
+            function getDefaultTreeCallback(){
+                var defaultTree;
+                d3.text("data/p__Hadarchaeota.nwk", function (error, data){
+                    if (error) throw error;
+                    defaultTree=data;
+                    return createTreeView(defaultTree);
+                });   
+            }
+            getDefaultTreeCallback()
+        }
+    })
 
     var checkGet 
 
     $(window).on('load', function() {
 
         //console.log('Everything loaded')
-        function defaultIcicle(){
-            var pathDefault = d3.select("#tree_display").selectAll('path.branch')
-            pathDefault.each(function(d, i){
-                if (i <= 17){
-                    d3.select(this)
-                    .attr("class", "branch branch-tagged")
-                }    
+        setTimeout (function() {
+
+            function defaultIcicle(){
+                var pathDefault = d3.select("#tree_display").selectAll('path.branch')
+                pathDefault.each(function(d, i){
+                    if (i <= 17){
+                        d3.select(this)
+                        .attr("class", "branch branch-tagged")
+                    }    
+                    })
+                pathDefault.each(function(d, i){
+                    if(i <= 7){
+                        d3.select(this)
+                        .classed("branch-tagged", false)
+                    }
                 })
-            pathDefault.each(function(d, i){
-                if(i <= 7){
-                    d3.select(this)
-                    .classed("branch-tagged", false)
-                }
-            })
-
-            var defaultElements = d3.select("#tree_display").selectAll('g.node')
-
-            var elements = defaultElements.each(function(d, i){
-                if (i <= 5){
-                    d3.select(this)
-                        .attr('class', 'node node-tagged')                       
-                }
-            })
-
-            var elementsOnpageload
-            elementsOnpageload = elements[0].splice(0,6)
-            //console.log(elementsOnpageload)
-            return elementsOnpageload
-
-        }
-
-        checkGet = defaultIcicle()
-        //console.log(checkGet)
-        function getDefaultIcicle(){
-            defaultTaxaArray = [];
-            defaultDomainArray = [];
-
-            defaultDomainArray=taxonomyDataArchaea;
-
-            for (var i = 0; i < checkGet.length; i++) {
-                let element = checkGet[i].textContent;
-                for (var j = 0; j < defaultDomainArray.length; j++) {
-                    if ((defaultDomainArray[j].id).indexOf(element) !== -1 && element.length>=4) {
-                        //console.log(selectedDomainArray[j])
-                        defaultTaxaArray.push(defaultDomainArray[j]);
+    
+                var defaultElements = d3.select("#tree_display").selectAll('g.node')
+    
+                var elements = defaultElements.each(function(d, i){
+                    if (i <= 5){
+                        d3.select(this)
+                            .attr('class', 'node node-tagged')                       
+                    }
+                })
+    
+                var elementsOnpageload
+                elementsOnpageload = elements[0].splice(0,6)
+                //console.log(elementsOnpageload)
+                return elementsOnpageload
+    
+            }
+    
+            checkGet = defaultIcicle()
+            //console.log(checkGet)
+            function getDefaultIcicle(){
+                defaultTaxaArray = [];
+                defaultDomainArray = [];
+    
+                defaultDomainArray=taxonomyDataArchaea;
+    
+                for (var i = 0; i < checkGet.length; i++) {
+                    let element = checkGet[i].textContent;
+                    for (var j = 0; j < defaultDomainArray.length; j++) {
+                        if ((defaultDomainArray[j].id).indexOf(element) !== -1 && element.length>=4) {
+                            //console.log(selectedDomainArray[j])
+                            defaultTaxaArray.push(defaultDomainArray[j]);
+                        }
                     }
                 }
+                //console.log(defaultTaxaArray)
+                return defaultTaxaArray
+    
             }
-            //console.log(defaultTaxaArray)
-            return defaultTaxaArray
+            getDefaultIcicle()
+    
+            createIcicle(getDefaultIcicle())
 
-        }
-        getDefaultIcicle()
-
-        createIcicle(getDefaultIcicle())
-
+        }, 500)
     })
-    
 
-    
-
-     
-    
+ 
     /*
     creates Tree from an uploaded file.
      */
