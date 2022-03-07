@@ -2,7 +2,7 @@
 An interactive web tool to provide taxonomic context for a given phylogenetic tree.
 
 
-![](/feature.png)
+![](/img/feature.png)
 
 
 ## Features
@@ -15,7 +15,7 @@ An interactive web tool to provide taxonomic context for a given phylogenetic tr
 * download resulting icicle as .svg file.
 
 
-## Code
+## Source Code
 |Script|Description| 
 |---|---|
 |[scripts/](scripts)| the javascript codes required to deploy the web tool
@@ -26,7 +26,7 @@ An interactive web tool to provide taxonomic context for a given phylogenetic tr
 |[scripts/phylotree.js](./scripts/phylotree.js)| the phylotree.js library that creates the phylogenetic tree view 
 |[styles/style.css](./styles/style.css)| CSS sheets to style and format phyolgeny and icicle
 
-## Dependancy
+## Dependencies
 This is a web based software. It is implemented using HTML, JavaScript, and CSS. 
 
 The integrated libraries:
@@ -40,11 +40,11 @@ The integrated libraries:
 |phylotree.js|n.a|
 |underscore.js|1.8.3|
 
-The creation of phylogenetic tree view is accomplished with the phylotree.js.
+The creation of the phylogenetic tree view is possible thanks to the phylotree.js library.
 > Shank, Stephen D., Steven Weaver, and Sergei L. Kosakovsky Pond. "phylotree. js-a JavaScript library for application development and interactive data visualization in phylogenetics." BMC bioinformatics 19.1 (2018): 1-5, https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2283-2
 
 
-## Data
+## Data sets
 The taxonomy data integrated into the tool includes the complete taxonomy for bacteria and archaea.
 It is retrieved from the Genome Taxonomy Database (GTDB). 
 
@@ -52,13 +52,16 @@ The integrated phylogenetic tree data are also retrieved from GTDB.
 From the provided reference phylogenetic tree data of GTDB two small samples are extracted for each domain.
 The class Methanomicrobia and the phylum Hadarchaeota are retrieved from the reference tree of Archaea.
 The family Actinomycetaceae and Schwanellacea are extracted from the reference tree of Bacteria.
+This totals four data sets.
+
 
 ## Citation
 
 If you use this software, please consider citing the following paper:
 ```
-To appear soon
+TBD
 ```
+
 
 ## License
 
