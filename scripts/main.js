@@ -866,7 +866,7 @@
     
             createIcicle(getDefaultIcicle())
 
-        }, 500)
+        }, 1000)
     })
 
  
