@@ -947,7 +947,7 @@
     }
 
 
-    /* function sort_nodes (asc) {
+    function sort_nodes (asc) {
         tree.traverse_and_compute (function (n) {
                 var d = 1;
                 if (n.children && n.children.length) {
@@ -958,7 +958,7 @@
             tree.resort_children (function (a,b) {
                 return (a["count_depth"] - b["count_depth"]) * (asc ? 1 : -1);
             });
-    } */
+    }
       
 
     function createTreeView(name) {
@@ -966,7 +966,7 @@
         tree.svg(d3.select("#tree_display"))
         .radial(false);
 
-        //toolBar()
+        toolBar()
 
         tree((name))
             .layout();
@@ -977,7 +977,7 @@
     } 
 
    
-    /* function toolBar(){
+    function toolBar(){
         $(".phylotree-align-toggler").on ("change", function (e) {
             if ($(this).is(':checked')) {
                 if (tree.align_tips ($(this).data ("align") == "right")) {
@@ -1005,9 +1005,9 @@
             sort_nodes (false);
         });
 
-    } */
+    } 
     /*Toggle toolbar */
-    /* function toggleBtn() {
+    function toggleBtn() {
         var toggleButton = document.getElementById('toggleBTN');
         var x = document.getElementById("toolBar");
         if (x.style.display === "block") {
@@ -1017,7 +1017,7 @@
           x.style.display = "block";
           toggleButton.innerHTML = 'Hide Toolbar';
         }
-    }  */
+    } 
 
 
 
