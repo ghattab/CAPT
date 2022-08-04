@@ -253,7 +253,7 @@
         };
 
         let scaleWidth=2000;
-        let scaleHeight=1500;
+        let scaleHeight=2500;
 
         let width=2000 - margin.right - margin.left;
         let height = 1500 - margin.top - margin.bottom;
